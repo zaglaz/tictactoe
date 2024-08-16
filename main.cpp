@@ -1,15 +1,28 @@
 #include "dialogue.h"
+#include "gameController.h"
+#include <string>
+#include <iostream>
 
 int main()
 {
-    bool exit{false};
+    intro();
+    std::string player1{nameSelection()};
+    std::string player2{nameSelection()};
 
-    while (!exit)
+    bool gameEnd{false};
+    int turns{0};
+
+    while (!gameEnd)
     {
-        intro();
-        nameSelection();
+        turns++;
+        addPiece(moveSelection(player1), turns);
+        renderBoard();
+        if (checkTurnCount(turns)) break;
 
-        exit = true;
+        turns++;
+        addPiece(moveSelection(player2), turns);
+        renderBoard();
+        if (checkTurnCount(turns)) break;
     }
     return 0;
 }
