@@ -39,3 +39,27 @@ bool checkTurnCount(int turnCount)
     }
     else return false;
 }
+
+bool winCondition(char x, char y, char z)
+{
+    if (x == 'X' && y == 'X' && z == 'X' || x == 'O' && y == 'O' && z == 'O')
+    {
+        return true;
+    }
+    return false;
+}
+
+bool searchForWin()
+{
+    for (int j{0}; j <= 2; ++j)
+    {
+        //Horizontal rows: 123 456 789, vertical columns 147, 258, 369
+        //TODO: add lateral/horizontal logic
+        if (winCondition(board[j], board[j+3], board[j+6]))
+            {
+                std::cout << "We have a winner!!";
+                return true;
+            }
+    }
+    return false;
+}

@@ -1,5 +1,4 @@
 #include <string>
-
 #ifndef DIALOGUE_H
 #define DIALOGUE_H
 
