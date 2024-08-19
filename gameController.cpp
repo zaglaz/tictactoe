@@ -51,15 +51,15 @@ bool winCondition(char x, char y, char z)
 
 bool searchForWin()
 {
-    for (int j{0}; j <= 2; ++j)
+    for (int j{1}; j <= 3; ++j)
     {
-        //Horizontal rows: 123 456 789, vertical columns 147, 258, 369
-        //TODO: add lateral/horizontal logic
-        if (winCondition(board[j], board[j+3], board[j+6]))
-            {
-                std::cout << "We have a winner!!";
-                return true;
-            }
+        if (winCondition(board[j-1], board[j+2], board[j+5]) || winCondition(board[(j*3)-3], board[(j*3)-2], board[(j*3)-1])
+                || winCondition(board[0], board[4], board[8])
+                || winCondition(board[2], board[4], board[6]))
+        {
+            std::cout << "We have a winner!!";
+            return true;
+        }
     }
     return false;
 }
