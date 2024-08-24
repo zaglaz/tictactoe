@@ -18,13 +18,7 @@ int main()
         addPiece(moveSelection(player1), turns);
         renderBoard();
 
-        if (searchForWin())
-        {
-            gameEnd = !gameEnd;
-            continue;
-        }
-
-        else if (checkTurnCount(turns))
+        if (searchForWin() || checkTurnCount(turns))
         {
             gameEnd = !gameEnd;
             continue;
@@ -34,12 +28,7 @@ int main()
         addPiece(moveSelection(player2), turns);
         renderBoard();
 
-        if (searchForWin())
-        {
-            gameEnd = !gameEnd;
-            continue;
-        }
-        else if (checkTurnCount(turns))
+        if (searchForWin() || checkTurnCount(turns))
         {
             gameEnd = !gameEnd;
             continue;

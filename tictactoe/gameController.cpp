@@ -4,7 +4,7 @@
 
 std::string board{"         "};
 
-void addPiece(int boardNum, int turnCount)
+void addPiece(size_t boardNum, int turnCount)
 {
     //Odd number turns (first player) will use X as a marker, with the other using O.
     if (turnCount % 2 == 1)
@@ -19,7 +19,7 @@ void addPiece(int boardNum, int turnCount)
 
 void renderBoard()
 {
-    for (int i{0}; i <= board.length(); ++i)
+    for (size_t i{0}; i <= board.length(); ++i)
     {
         if (i % 3 == 0 && i != 0 && i != board.length())
         {
@@ -42,16 +42,12 @@ bool checkTurnCount(int turnCount)
 
 bool winCondition(char x, char y, char z)
 {
-    if (x == 'X' && y == 'X' && z == 'X' || x == 'O' && y == 'O' && z == 'O')
-    {
-        return true;
-    }
-    return false;
+    return (x == 'X' && y == 'X' && z == 'X' || x == 'O' && y == 'O' && z == 'O');
 }
 
 bool searchForWin()
 {
-    for (int j{1}; j <= 3; ++j)
+    for (size_t j{1}; j <= 3; ++j)
     {
         if (winCondition(board[j-1], board[j+2], board[j+5]) || winCondition(board[(j*3)-3], board[(j*3)-2], board[(j*3)-1])
                 || winCondition(board[0], board[4], board[8])

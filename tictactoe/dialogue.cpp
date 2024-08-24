@@ -22,10 +22,10 @@ std::string nameSelection()
     return player;
 }
 
-int moveSelection(std::string playerName)
+size_t moveSelection(std::string playerName)
 {
     std::cout << playerName << ", choose a number 1-9 to place a piece: ";
-    int moveNum{};
+    size_t moveNum{};
     std::cin >> moveNum;
     return moveNum;
 }
