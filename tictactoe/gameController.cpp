@@ -1,32 +1,21 @@
 #include "gameController.h"
 #include <iostream>
-#include <stdexcept>
 #include <string>
 
 std::string board{"         "};
 
-//WIP: return state that indicate in the main loop if there was an overlapping piece selected, prompting the same player to re-select
 void addPiece(size_t boardNum, int turnCount) {
-    try {
-        if (board[boardNum - 1] != ' ') {
-            throw boardNum;  // Board position already occupied
-        }
-
-        // Odd number turns (first player) will use X as a marker, with the other using O.
-        if (turnCount % 2 == 1) {
-            board[boardNum - 1] = 'X';
-        }
-        else {
-            board[boardNum - 1] = 'O';
-        }
+    // Odd number turns (first player) will use X as a marker, with the other using O.
+    if (turnCount % 2 == 1) {
+        board[boardNum - 1] = 'X';
     }
-    catch (size_t) {
-        std::cout << "There is already a piece on " << boardNum << '\n';
+    else {
+        board[boardNum - 1] = 'O';
     }
+    
 }
 
 void renderBoard() {
-
     for (size_t i{0}; i <= board.length(); ++i) {
         if (i % 3 == 0 && i != 0 && i != board.length()) {
             std::cout << "|\n";
