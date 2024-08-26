@@ -6,13 +6,7 @@ std::string board{"         "};
 
 void addPiece(size_t boardNum, int turnCount) {
     // Odd number turns (first player) will use X as a marker, with the other using O.
-    if (turnCount % 2 == 1) {
-        board[boardNum - 1] = 'X';
-    }
-    else {
-        board[boardNum - 1] = 'O';
-    }
-    
+    board[boardNum - 1] = (turnCount % 2 == 1) ? 'X' : 'O';
 }
 
 void renderBoard() {

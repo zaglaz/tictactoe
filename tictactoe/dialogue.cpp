@@ -4,8 +4,10 @@
 #include <stdexcept>
 #include <string>
 
+int constexpr boardLimit = 9;
+
 std::string nameSelection() {
-    std::cout << "Enter player 1's name: ";
+    std::cout << "Enter player's name: ";
     std::string player{};
     std::cin >> player;
 
@@ -14,19 +16,30 @@ std::string nameSelection() {
 }
 
 size_t moveSelection(std::string playerName) {
-    bool isValidNum{ false };
     size_t moveNum{};
 
     //Input handler
-    while (!isValidNum) {
-        std::cout << playerName << ", choose a number 1-9 to place a piece: ";
-        std::cin >> moveNum;
+    while (true) {
+        while (true) {
+            try {
+                std::cout << playerName << ", choose a number 1-9 to place a piece: ";
+                std::cin >> moveNum;
+                if (moveNum > boardLimit || boardLimit - moveNum < 0) {
+                    throw moveNum;
+                }
+                break;
+            }
+            
+            catch (size_t moveNum) {
+                std::cout << "Please select a number between 1-9, not " << moveNum << '\n';
+            }
+        }
 
         try {
             if (board[moveNum - 1] != ' ') {
                 throw moveNum;  // Board position already occupied
             }
-            isValidNum = true;
+            break;
         }
     
         catch (size_t moveNum) {

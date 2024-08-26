@@ -12,18 +12,16 @@ int main() {
     std::string player1{nameSelection()};
     std::string player2{nameSelection()};
 
-    bool gameEnd{false};
     int turns{0};
 
-    while (!gameEnd) {
+    while (true) {
 
         ++turns;
         addPiece(moveSelection(player1), turns);
         renderBoard();
 
         if (searchForWin() || gameIsTie(turns)) {
-            gameEnd = !gameEnd;
-            continue;
+            break;
         }
 
         ++turns;
@@ -31,8 +29,7 @@ int main() {
         renderBoard();
 
         if (searchForWin() || gameIsTie(turns)) {
-            gameEnd = !gameEnd;
-            continue;
+            break;
         }
     }
     return 0;
